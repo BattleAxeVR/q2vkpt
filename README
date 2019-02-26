@@ -11,3 +11,35 @@ Please refer to our project page for more details.
 
 Project homepage: http://brechpunkt.de/q2vkpt
 
+INSTALLATION INSTRUCTIONS
+
+Step 1) CD to your base Git directory.
+
+Step 2) We need SPIRV to build shaders
+
+git clone https://github.com/KhronosGroup/SPIRV-Tools.git   spirv-tools
+git clone https://github.com/KhronosGroup/SPIRV-Headers.git spirv-tools/external/spirv-headers
+git clone https://github.com/google/googletest.git          spirv-tools/external/googletest
+git clone https://github.com/google/effcee.git              spirv-tools/external/effcee
+git clone https://github.com/google/re2.git                 spirv-tools/external/re2
+
+Step 3) Build SPIRV:
+
+cd SPIRV-Tools
+mkdir build && cd build
+cmake [-G <platform-generator>] SPIRV-Tools
+
+Step 4) You need OpenVR to be installed too:
+
+cd ..
+
+git clone https://github.com/ValveSoftware/openvr
+
+OR 
+
+git clone https://github.com/ValveSoftware/openvr q2vkpt/external/openvr
+
+ADDITIONAL FILES REQUIRED
+
+Step 5) You also need Pak0.pak and other files from a real quake 2 (or demo) installation to be copied into baseq2 subfolder.
+
