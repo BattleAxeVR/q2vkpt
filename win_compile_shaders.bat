@@ -1,4 +1,5 @@
 
+mkdir shader_vkpt
 cd src\refresh\vkpt\shader
 
 for %%a in (*.comp) do glslangValidator --target-env vulkan1.1 -DVKPT_SHADER -DSHADER_STAGE_COMP %%a -o ..\..\..\..\shader_vkpt\%%a.spv
