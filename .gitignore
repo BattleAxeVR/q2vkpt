@@ -11,3 +11,4 @@ build/
 shader_vkpt
 ./vkpt
 ./vkptded
+client.exe
