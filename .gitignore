@@ -8,7 +8,7 @@ game*.so
 *.swp
 build/
 /baseq2
-shader_vkpt
+%shader_vkpt
 ./vkpt
 ./vkptded
 client.exe

@@ -11,7 +11,7 @@ Please refer to our project page for more details.
 
 Project homepage: http://brechpunkt.de/q2vkpt
 
-INSTALLATION INSTRUCTIONS
+INSTALLATION INSTRUCTIONS FOR WINDOWS
 
 Step 1) CD to your base Git directory.
 
@@ -39,7 +39,48 @@ OR
 
 git clone https://github.com/ValveSoftware/openvr q2vkpt/external/openvr
 
+If you use Visual Studio 2017 with built-in CMAKE support, open the OpenVR folder in Visual Studio and change the installRoot to somewhere on your system:
+
+      "installRoot": "C:\\DEV\\OPENVR",
+	  
+
+Step 5) Then build + install via CMAKE.
+
+In VS 2018 running CMake -> Install should show you this:
+
+Build succeeded.
+[0/1] Install the project...
+-- Install configuration: "RelWithDebInfo"
+-- Installing: C:/DEV/OPENVR/lib/openvr_api64.lib
+-- Installing: C:/DEV/OPENVR/include/openvr/openvr_driver.h
+-- Installing: C:/DEV/OPENVR/include/openvr/openvr_capi.h
+-- Installing: C:/DEV/OPENVR/include/openvr/openvr.h
+Install succeeded.
+
+
+Step 6) You'll need to add OpenVR directories to environment variables or CMAKE lib settings.
+
+I did it thus (in Windows 10):
+
+Search bar = "Env"
+
+Add these variables to the system or user environment: 
+
+OPENVR_PATH C:\DEV\OPENVRSDK
+
+OPENVR_INCLUDE %OPENVR_PATH%\include
+OPENVR_LIB %OPENVR_PATH%\lib
+
+Make sure on the command prompt you can CD to those directories and the built files are there:
+
+CD %OPENVR_LIB%
+DIR openvr_api64.lib
+
+Step 7) Copy over openvr_api.dll and pdb to the binary / root folder of q2vkpt.
+
 ADDITIONAL FILES REQUIRED
 
-Step 5) You also need Pak0.pak and other files from a real quake 2 (or demo) installation to be copied into baseq2 subfolder.
+Step 8) You also need Pak0.pak and other files from a real quake 2 (or demo) installation to be copied into baseq2 subfolder.
 
+
+Step 9) Run the game (client.exe by default)
