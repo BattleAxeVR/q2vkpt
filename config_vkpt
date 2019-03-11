@@ -7,6 +7,9 @@ CONFIG_SDL2=1
 # use vkpt renderer
 CONFIG_VKPT_RENDERER=1
 
+# use openvr
+CONFIG_OPENVR=1
+
 # enable/disable vulkan validation layer
 CONFIG_VKPT_ENABLE_VALIDATION=0
 

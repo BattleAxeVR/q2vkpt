@@ -49,7 +49,53 @@ cvar_t *vkpt_profiler;
 
 static bsp_t *bsp_world_model;
 
+#if USE_OPENVR
 #include <openvr_capi.h>
+
+bool is_openvr_initialized = false;
+
+intptr_t VR_InitInternal(EVRInitError *peError, EVRApplicationType eType);
+void VR_ShutdownInternal();
+bool VR_IsHmdPresent();
+intptr_t VR_GetGenericInterface(const char *pchInterfaceVersion, EVRInitError *peError);
+bool VR_IsRuntimeInstalled();
+const char * VR_GetVRInitErrorAsSymbol(EVRInitError error);
+const char * VR_GetVRInitErrorAsEnglishDescription(EVRInitError error);
+
+struct VR_IVRSystem_FnTable* OVR = NULL;
+struct VR_IVRCompositor_FnTable* OVRC = NULL;
+struct VR_IVRRenderModels_FnTable* OVRM = NULL;
+
+bool initialize_openvr()
+{
+	EVRInitError error;
+
+	if(!VR_IsHmdPresent() || !VR_IsRuntimeInstalled())
+	{
+		return false;
+	}
+
+	VR_InitInternal(&error, EVRApplicationType_VRApplication_Scene);
+
+	if(error != EVRInitError_VRInitError_None)
+	{
+		return false;
+	}
+
+	is_openvr_initialized = true;
+	return true;
+}
+
+void deinitialize_openvr(void)
+{
+	if (is_openvr_initialized)
+	{
+
+		is_openvr_initialized = false;
+	}
+}
+
+#endif
 
 typedef enum {
 	VKPT_INIT_DEFAULT            = 0,
@@ -1442,6 +1488,10 @@ R_ClampScale(cvar_t *var)
 qboolean
 R_Init(qboolean total)
 {
+#if USE_OPENVR && 0
+	initialize_openvr();
+#endif
+
 	registration_sequence = 1;
 	qvk.window = SDL_CreateWindow("vkq2", 20, 50, r_config.width, r_config.height, SDL_WINDOW_VULKAN | SDL_WINDOW_RESIZABLE);
 	if(!qvk.window) {
@@ -1512,6 +1562,10 @@ R_Shutdown(qboolean total)
 	IMG_Shutdown();
 	MOD_Shutdown(); // todo: currently leaks memory, need to clear submeshes
 	VID_Shutdown();
+
+#if USE_OPENVR
+	deinitialize_openvr();
+#endif
 }
 
 // for screenshots

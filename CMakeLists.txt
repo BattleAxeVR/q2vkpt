@@ -8,12 +8,11 @@ HunterGate(
     SHA1 "a376088a679fbfbe3a2c330746801f1d47e51a37"
 )
 
-
-
 PROJECT(quake2-pt)
 
 OPTION(CONFIG_GL_RENDERER "Enable GL renderer")
 OPTION(CONFIG_VKPT_RENDERER "Enable VKPT renderer" ON)
+OPTION(CONFIG_OPENVR "Enable OpenVR" ON)
 OPTION(CONFIG_USE_OPTIX "Use optix for tracing rays")
 SET(CONFIG_OPTIX_DIR "" CACHE PATH "Optix SDK directory")
 
