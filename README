@@ -58,23 +58,12 @@ Build succeeded.
 Install succeeded.
 
 
-Step 6) You'll need to add OpenVR directories to environment variables or CMAKE lib settings.
+Step 6) You'll need to add OpenVR SDK environment variable so that LocateOpenVR.cmake can find it. 
 
-I did it thus (in Windows 10):
+Point the variable to the root of your checked out OpenVR github folder as such:
 
-Search bar = "Env"
+OPENVRSDK_LOCATION C:\GitHub\openvr
 
-Add these variables to the system or user environment: 
-
-OPENVR_PATH C:\DEV\OPENVRSDK
-
-OPENVR_INCLUDE %OPENVR_PATH%\include
-OPENVR_LIB %OPENVR_PATH%\lib
-
-Make sure on the command prompt you can CD to those directories and the built files are there:
-
-CD %OPENVR_LIB%
-DIR openvr_api64.lib
 
 Step 7) Copy over openvr_api.dll and pdb to the binary / root folder of q2vkpt.
 
