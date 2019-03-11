@@ -49,6 +49,8 @@ cvar_t *vkpt_profiler;
 
 static bsp_t *bsp_world_model;
 
+#include <openvr_capi.h>
+
 typedef enum {
 	VKPT_INIT_DEFAULT            = 0,
 	VKPT_INIT_SWAPCHAIN_RECREATE = (1 << 0),

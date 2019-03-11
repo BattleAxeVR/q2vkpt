@@ -14,7 +14,11 @@ message( STATUS "OPENVRSDK_LOCATION is " ${OPENVRSDK_LOCATION} )
 if(OPENVRSDK_LOCATION)
 
   list(APPEND OPENVRSDK_INCLUDE_DIRS ${OPENVRSDK_LOCATION}/headers)
-  mark_as_advanced(OPENVRSDK_INCLUDE_DIRS)
+  #mark_as_advanced(OPENVRSDK_INCLUDE_DIRS)
+
+	if(OPENVRSDK_INCLUDE_DIRS)
+	message( "Open VR headers found")
+  endif(OPENVRSDK_INCLUDE_DIRS)
 
   # 64-bit Windows only for now
   set(_OPENVR_ARCH "win64")
@@ -33,6 +37,8 @@ if(OPENVRSDK_LOCATION)
   mark_as_advanced(OPENVRSDK_LIBS)
 
   if(OPENVRSDK_LIB)
+	#LINK_DIRECTORIES(client PRIVATE refresh/vkpt/include/vulkan)
+	#TARGET_LINK_LIBRARIES(client OPENVRSDK_LIB)
     set( OPENVRSDK_FOUND "YES" )
 	message( "Open VR library was found")
   endif(OPENVRSDK_LIB)

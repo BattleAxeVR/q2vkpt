@@ -1,11 +1,14 @@
 cmake_minimum_required (VERSION 3.8)
 
+include("cmake/LocateOpenVR.cmake")
 include("cmake/HunterGate.cmake")
 # ---------- Startup hunter -------------------------
 HunterGate(
     URL "https://github.com/ruslo/hunter/archive/v0.20.7.tar.gz"
     SHA1 "a376088a679fbfbe3a2c330746801f1d47e51a37"
 )
+
+
 
 PROJECT(quake2-pt)
 
